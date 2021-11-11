@@ -254,3 +254,39 @@
   });
 
 })()
+const testimonyForm = document.getElementById('testimonyForm');
+const nameInput = document.getElementById('nameInput');
+const nameError = document.getElementById('nameError');
+const testimonyInput = document.getElementById('testimonyInput');
+const testimonyError = document.getElementById('testimonyError');
+
+nameInput.focus();
+
+nameInput.addEventListener('keydown', (e) => {
+  nameError.innerHTML = '';
+  if (e.keyCode === 13) {
+    e.preventDefault();
+    if (nameInput.value === '') {
+      nameError.innerHTML = 'Name cannot be empty';
+    } else {
+      testimonyInput.focus();
+    }
+  }
+});
+testimonyInput.addEventListener('keydown', (e) => {
+  testimonyError.innerHTML = '';
+});
+testimonyForm.addEventListener('submit', (e) => {
+  nameError.innerHTML = '';
+  testimonyError.innerHTML = '';
+  e.preventDefault();
+  if (nameInput.value === '') {
+    nameError.innerHTML = 'Name is required';
+    nameInput.focus();
+  } else if (testimonyInput.value === '') {
+    testimonyError.innerHTML = 'Testimony is required';
+    testimonyInput.focus();
+  } else {
+    testimonyForm.submit();
+  }
+});
